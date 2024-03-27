@@ -38,7 +38,7 @@ collection_name = "cameras"
 ```
 ## Example
 
-![mvs](https://github.com/TontonTremblay/blender_scene_mvs/assets/5629088/17a29e17-21d8-454a-8fa8-29d4bea1aabf)
+![mvs](https://github.com/TontonTremblay/blender_scene_mvs/assets/5629088/5ab15d90-f4f8-4645-ac31-c6923d848349)
 
 
 Here is an example of a multivew scene, [the_shed](https://drive.google.com/file/d/1RS5Q5bBqrgxPcV6_fmxgiALwOQGo9KIz/view?usp=sharing). 
