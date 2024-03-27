@@ -1,2 +1,38 @@
 # blender_scene_mvs
-adding a multiview system to a blender scene from a single script
+Adding a multiview system to a blender scene from a single script. 
+
+
+## Using the script
+This script assumes you already know a little bit about using the GUI in Blender. 
+Open the python editor, copy and paste the file `place_cameras_render.py`. 
+
+At the top of the file you need to specify which object you want to center, it is called `target_object_name`, just add the name of the object you want to place cameras around. 
+By default it will generate cameras in a north hemisphere around that object, you might need to play with radius. The cameras will be generated inside a collection called `cameras`.
+
+![image](https://github.com/TontonTremblay/blender_scene_mvs/assets/5629088/762813a8-092c-4b7a-90d5-0d01e3f9a0c5)
+I added 3 different camera patterns: `random`, `structured`, `sweaping`. See figure below. 
+
+```python
+#### variables to be set ####
+
+target_object_name = 'cam_target'
+radius_around_object = 0.6
+nb_cameras = 200
+radius = 1
+
+dont_render = False
+
+# choices: random, structured, sweaping 
+sampling_method = 'structured'
+
+bpy.context.scene.render.resolution_x = 1024  # width
+bpy.context.scene.render.resolution_y = 1024  # height
+
+camera_lens = 25
+
+# output
+filepath = os.path.join('E:\\', 'download', 'the_shed', 'the_shed', 'renders')
+bpy.context.scene.render.image_settings.file_format = 'PNG'  # Example format
+
+collection_name = "cameras"
+```
