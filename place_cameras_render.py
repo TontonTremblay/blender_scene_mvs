@@ -14,6 +14,8 @@ radius_around_object = 0.6
 nb_cameras = 200
 radius = 1
 
+dont_render = False
+
 # choices: random, structured, sweaping 
 sampling_method = 'structured'
 
@@ -26,17 +28,7 @@ camera_lens = 25
 filepath = os.path.join('E:\\', 'download', 'the_shed', 'the_shed', 'renders')
 bpy.context.scene.render.image_settings.file_format = 'PNG'  # Example format
 
-
 collection_name = "cameras"
-collections = bpy.data.collections  # Get all collections
-collection = collections.get(collection_name)
-
-# If the collection does not exist, create it
-if collection is None:
-    collection = collections.new(name=collection_name)
-    # Link the new collection to the scene's collection
-    bpy.context.scene.collection.children.link(collection)
-
 
 ##############################################################################################################
 # Function taken from https://github.com/zhenpeiyang/HM3D-ABO/blob/master/my_blender.py
@@ -232,6 +224,17 @@ def fibonacci_hemisphere_points_upper(nb_points):
 
     return x, y, z
 
+###########################################################################################
+
+collections = bpy.data.collections  # Get all collections
+collection = collections.get(collection_name)
+
+# If the collection does not exist, create it
+if collection is None:
+    collection = collections.new(name=collection_name)
+    # Link the new collection to the scene's collection
+    bpy.context.scene.collection.children.link(collection)
+
 
 #### setting up the cameras ####
 
@@ -250,9 +253,9 @@ delete_cameras_with_prefix_in_collection()
 for i in range(len(x_line)):
 
     cam = create_camera_looking_at(
-        (x_line[i]+target_object.location.x,
-         y_line[i]+target_object.location.y,
-         z_line[i]+target_object.location.z
+        (x_line[i]*radius+target_object.location.x,
+         y_line[i]*radius+target_object.location.y,
+         z_line[i]*radius+target_object.location.z
         ), 
         target_object_name,
         f'cam_{str(i).zfill(3)}',
@@ -313,7 +316,7 @@ for i_cam, camera in enumerate(cameras_to_render):
     "transform_matrix":matrix
     }
     bpy.context.scene.render.filepath = f"{filepath}/{str(i_cam).zfill(3)}{suffix_naming}.png"
-    if not os.path.exists(bpy.context.scene.render.filepath):
+    if not os.path.exists(bpy.context.scene.render.filepath) and not dont_render:
         bpy.ops.render.render(write_still = True)
 
     
