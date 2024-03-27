@@ -36,3 +36,16 @@ bpy.context.scene.render.image_settings.file_format = 'PNG'  # Example format
 
 collection_name = "cameras"
 ```
+## Example
+
+![mvs](https://github.com/TontonTremblay/blender_scene_mvs/assets/5629088/17a29e17-21d8-454a-8fa8-29d4bea1aabf)
+
+
+Here is an example of a multivew scene, [the_shed](https://drive.google.com/file/d/1RS5Q5bBqrgxPcV6_fmxgiALwOQGo9KIz/view?usp=sharing). 
+The original scene was downloaded [here](https://polyhaven.com/collections/the_shed) and see above for the 100 views that I rendered. 
+
+
+
+
+
+
